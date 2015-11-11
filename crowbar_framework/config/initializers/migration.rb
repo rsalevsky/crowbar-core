@@ -16,17 +16,6 @@
 
 Rails.application.config.tap do |config|
   if caller.grep(/rake/).empty?
-    migrator = ActiveRecord::Migrator.new(
-      :up,
-      ActiveRecord::Migrator.migrations(
-        ActiveRecord::Migrator.migrations_paths
-      )
-    )
-    if migrator.pending_migrations.any?
-      puts "Migrating database schema to #{migrator.pending_migrations.last.version}..."
-      ActiveRecord::Migrator.migrate(
-        ActiveRecord::Migrator.migrations_paths
-      )
-    end
+    Crowbar::Migrate.migrate!
   end
 end
