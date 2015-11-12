@@ -541,6 +541,13 @@ en:
       active: 'Active'
       active_repo_tooltip: 'Managed nodes will be automatically configured to use repositories only if they are marked as active'
 
+  backup:
+    index:
+      title: 'Crowbar Backup & Restore'
+      backup_hint: 'To restore Crowbar from a backup please upload the "crowbar_backup.tar.gz".'
+      backup: 'Backup'
+      start: 'Start Crowbar Restore'
+
   # Global
   overview: 'Overview'
   show: 'View'

@@ -1,0 +1,17 @@
+.row
+  .col-xs-12
+    %h1.page-header
+      = t(".title")
+
+    .alert.alert-info
+      = t(".backup_hint").html_safe
+
+    = form_for :backup, :url => backup_upload_path, "data-remote" => true, :html => { :multipart => true, :role => "form", "data-type" => "html", "data-method" => "put" } do |f|
+      .panel-body
+        .form-group
+          = f.label :backup, t(".backup")
+          = f.file_field :backup
+
+      .panel-footer.text-right
+        .btn-group
+          %input.btn.btn-default{ :type => "submit", :name => "submit", :value => t(".start") }

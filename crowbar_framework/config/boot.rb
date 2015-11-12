@@ -88,6 +88,9 @@ else
   gem "yaml_db", version: "~> 0.3.0"
   require "yaml_db"
 
+  gem "archive", version: "~> 0.0.6"
+  require "archive"
+
   # chef related
   gem "mixlib-shellout", version: "~> 1.4"
   require "mixlib/shellout"
@@ -97,4 +100,7 @@ else
 
   gem "chef", version: "~> 10.32"
   require "chef"
+
+  # wirthout require
+  gem "knife-backup", version: "~> 0.0.11"
 end

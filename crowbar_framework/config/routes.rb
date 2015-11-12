@@ -77,6 +77,10 @@ Rails.application.routes.draw do
   post "utils/repositories/deactivate", controller: "repositories", action: "deactivate", as: "deactivate_repository"
   post "utils/repositories/activate_all", controller: "repositories", action: "activate_all", as: "activate_all_repositories"
   post "utils/repositories/deactivate_all", controller: "repositories", action: "deactivate_all", as: "deactivate_all_repositories"
+  get "utils/restart/:id(.:format)", controller: "support", action: "restart", as: "restart"
+  get "utils/backup", controller: "backup", action: "index", as: "backup"
+  post "utils/backup", controller: "backup", action: "commit", as: "backup_commit"
+  put "utils/backup", controller: "backup", action: "upload", as: "backup_upload"
 
   # barclamps
   get "crowbar/:controller/1.0/help", action: "help", as: "help_barclamp"
