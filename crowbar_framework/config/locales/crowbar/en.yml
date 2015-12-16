@@ -529,6 +529,23 @@ en:
       two_words_connector: ' and '
       last_word_connector: ' and '
 
+  backup:
+    index:
+      title: 'Crowbar Backup'
+      backup: 'Backup'
+      image_name: 'Image Name'
+      created_at: 'Created At'
+      file_size: 'File Size'
+      crowbar: 'Crowbar'
+      openstack: 'OpenStack'
+      crowbar_openstack: 'Crowbar & OpenStack'
+      create_backup_image: 'Create Backup Image'
+      download_image: 'Click to download image'
+      enter_name: 'Please enter a name for the image'
+      invalid_filename_format: 'Wrong file format, please use [FILENAME]-[YYYYMMDD]-[HHMMSS].tar.gz'
+      invalid_filename: 'Invalid filename. Please dont use whitespace or special characters'
+      missing_backup: 'Backup does not exist'
+
   # Global
   overview: 'Overview'
   show: 'View'
@@ -537,6 +554,9 @@ en:
   back: 'Go Back'
   cancel: 'Cancel'
   edit: 'Edit'
+  create: 'Create'
+  download: 'Download'
+  delete: 'Delete'
   actions: 'Actions'
   are_you_sure: 'Are you sure?'
   unknown: 'Unknown'

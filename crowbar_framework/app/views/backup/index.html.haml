@@ -1,0 +1,52 @@
+.row
+  .col-xs-12
+    %h2.page-header
+      = t(".title")
+      .btn-group.pull-right
+        .btn.btn-primary{ data: { toggle: "modal", target: "#create_backup_modal" } }
+          = t(".create_backup_image")
+.panel.panel-default
+  %table.table
+    %thead
+      %tr
+        %th.col-xs-4
+          = t(".image_name")
+        %th.col-xs-3
+          = t(".created_at")
+        %th.col-xs-3
+          = t(".file_size")
+        %th.col-xs-1
+        %th.col-xs-1
+    %tbody
+      - @backups.each do |backup|
+        %tr
+          %td
+            = backup.name
+          %td
+            = l(date_parse(backup.created_at), format: :long)
+          %td
+            = number_to_human_size(backup.size)
+          %td
+            = download_backup_button(backup)
+          %td
+            = delete_backup_button(backup)
+
+.modal.fade{ id: "create_backup_modal" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .btn.close{ data: { dismiss: "modal" } }
+          = icon_tag(:times)
+        %h2
+          = t(".create_backup_image")
+      = form_tag backup_create_path do
+        .modal-body
+          %h3
+            = t(".enter_name")
+          %p
+            = text_field_tag "filename", "", class: "form-control", placeholder: t(".image_name")
+        .modal-footer
+          .row
+            .btn.btn-default{ data: { dismiss: "modal" } }
+              = t("cancel")
+            = submit_tag t("create"), class: "btn btn-success"
