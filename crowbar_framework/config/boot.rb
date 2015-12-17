@@ -85,8 +85,6 @@ else
   gem "syslogger", version: "~> 1.6"
   require "syslogger"
 
-  gem "yaml_db", version: "~> 0.3.0"
-  require "yaml_db"
 
   gem "archive", version: "~> 0.0.6"
   require "archive"

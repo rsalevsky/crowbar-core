@@ -16,7 +16,6 @@
 #
 
 require "chef"
-require "yaml_db"
 
 module Crowbar
   class Backup
@@ -32,7 +31,6 @@ module Crowbar
         nodes
         roles
         databags
-        db
         crowbar
       end
 
@@ -82,21 +80,6 @@ module Crowbar
             end
           end
         end
-      end
-
-      def db
-        logger.debug "Backing up database"
-
-        data_dir = workdir.join("crowbar")
-        data_dir.mkpath unless data_dir.directory?
-
-        SerializationHelper::Base.new(
-          YamlDb::Helper
-        ).dump(
-          data_dir.join(
-            "database.#{YamlDb::Helper.extension}"
-          )
-        )
       end
 
       def crowbar
