@@ -18,11 +18,6 @@ branches:
     - /^release\/mesa-.*$/
     - /^release\/suse-cloud\/.*$/
 
-addons:
-  apt:
-    packages:
-      - libarchive-dev
-
 gemfile: crowbar_framework/Gemfile
 
 install:

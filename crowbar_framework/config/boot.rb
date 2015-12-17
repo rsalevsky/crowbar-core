@@ -85,10 +85,6 @@ else
   gem "syslogger", version: "~> 1.6"
   require "syslogger"
 
-
-  gem "archive", version: "~> 0.0.6"
-  require "archive"
-
   # chef related
   gem "mixlib-shellout", version: "~> 1.4"
   require "mixlib/shellout"
