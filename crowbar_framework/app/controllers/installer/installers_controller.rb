@@ -26,7 +26,6 @@ module Installer
     #
     # Perform Crowbar Installation
     #
-    # Provides the restful api call for
     # /installer/status 	GET 	return done steps, error and success
     # returns a hash with an indicator if the installation failed/succeeded
     # and the steps that are done
