@@ -509,6 +509,7 @@ node[:provisioner][:supported_oses].each do |os, arches|
       end
 
       packages = node[:provisioner][:packages][os] || []
+      packages.push("ruby2.1-rubygem-crowbar-client")
 
       template "#{os_dir}/crowbar_register" do
         mode 0o644

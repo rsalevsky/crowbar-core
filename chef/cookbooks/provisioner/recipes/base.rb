@@ -215,9 +215,40 @@ template config_file do
   notifies :restart, "service[chef-client]", :delayed
 end
 
+admin_ip = Chef::Recipe::Barclamp::Inventory.get_network_by_type(provisioner_server_node, "admin").address
+
+if provisioner_server_node[:crowbar][:users].length == 0
+  username = ""
+  password = ""
+  anonymous = true
+else
+  anonymous = false
+  if provisioner_server_node[:crowbar][:users].has_key?("crowbar-client")
+    username = "crowbar-client"
+    password = provisioner_server_node[:crowbar][:users].fetch(
+      username
+    )["password"]
+  else
+    username = provisioner_server_node[:crowbar][:users].first[0]
+    password = provisioner_server_node[:crowbar][:users].first[1]
+  end
+end
+
+template "/etc/crowbarrc" do
+  owner "root"
+  group "root"
+  mode "0644"
+  source "crowbarrc.erb"
+  variables(
+    server: "http://#{admin_ip}:80",
+    username: username,
+    password: password,
+    anonymous: anonymous
+  )
+end
+
 # On SUSE: install crowbar_join properly, with init script
 if node[:platform_family] == "suse" && !node.roles.include?("provisioner-server")
-  admin_ip = Chef::Recipe::Barclamp::Inventory.get_network_by_type(provisioner_server_node, "admin").address
   web_port = provisioner_server_node[:provisioner][:web_port]
 
   ntp_config = Barclamp::Config.load("core", "ntp")
@@ -336,6 +367,7 @@ if node[:platform_family] == "suse" && !node.roles.include?("provisioner-server"
       end
     end
     # install additional packages
+    package "ruby2.1-rubygem-crowbar-client"
     os = "#{node[:platform]}-#{node[:platform_version]}"
     if node[:provisioner][:packages][os]
       node[:provisioner][:packages][os].each { |p| package p }
